@@ -37,7 +37,7 @@ export default function AboutPage() {
             { title: "Empathy First", desc: "We listen to and prioritize community voices." },
             { title: "Solution-Oriented", desc: "We work toward practical flood resilience strategies." },
             { title: "Community-Driven", desc: "We build partnerships across sectors and groups." },
-            { title: "Science-Based", desc: "We ground our work in credible research and data." },
+            { title: "Anti-Corruption", desc: "We hold the powerful accountable, so the people never drown in silence." },
           ].map((val, idx) => (
             <div key={idx} className="p-6 border rounded-lg shadow-sm bg-white">
               <h3 className="font-semibold text-lg mb-2">{val.title}</h3>

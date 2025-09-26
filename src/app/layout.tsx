@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Trispace } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const trispace = Trispace({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
             {/*LatestNews*/}
           </section>
         </main>
+        <Footer />
       </body>
     </html>
   );
