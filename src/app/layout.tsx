@@ -16,8 +16,16 @@ const notoSerif = Noto_Serif({
 export const metadata: Metadata = {
   title: "floodwatch.ph",
   description: "Real-Time Flood News for Every Filipino.",
-  keywords: ["floodwatch.ph", "news", "flooding", "philippines"],
-  authors: [{ name: "ariesjace" }], // ✅ Correct type for root-level authors
+  keywords: [
+    "floodwatch.ph",
+    "philippines floods",
+    "flood news",
+    "disaster preparedness",
+    "typhoon updates",
+    "flood awareness",
+  ],
+  authors: [{ name: "ariesjace" }],
+  metadataBase: new URL("https://floodwatch-ph.vercel.app"),
   icons: {
     icon: [{ url: "/img/floodwatch.ph.png" }],
   },
@@ -25,7 +33,7 @@ export const metadata: Metadata = {
     title: "floodwatch.ph",
     description: "Real-Time Flood News for Every Filipino.",
     type: "website",
-    url: "https://floodwatch-ph.vercel.app", // optional but recommended
+    url: "https://floodwatch-ph.vercel.app",
     siteName: "FloodWatch PH",
     images: [
       {
@@ -35,6 +43,12 @@ export const metadata: Metadata = {
         alt: "FloodWatch Philippines",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "floodwatch.ph",
+    description: "Real-Time Flood News for Every Filipino.",
+    images: ["/img/floodwatch.ph.png"],
   },
 };
 
