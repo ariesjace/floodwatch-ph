@@ -1,11 +1,21 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import React, { useState } from "react"
 import { Menu, X, Search } from "lucide-react" // npm install lucide-react
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/articles", label: "Articles" },
+    { href: "/international", label: "International" },
+    { href: "/community", label: "Community" },
+    { href: "/about", label: "About" },
+  ]
 
   return (
     <header className="flex items-center justify-between px-6 py-3 border-b border-gray-300 relative">
@@ -14,17 +24,33 @@ const Header = () => {
         <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold leading-none">
           <span className="text-blue-800">flood</span>
           <span className="text-yellow-400">watch</span>
-          <span className="text-red-600">.ph</span>
+          <span className="text-black">.</span>
+          <span className="text-red-600">ph</span>
         </h1>
       </Link>
 
       {/* Desktop Navbar */}
       <nav className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
         <ul className="flex space-x-6 text-sm sm:text-base font-medium">
-          <li><Link href="/" className="hover:text-blue-800">Home</Link></li>
-          <li><Link href="/articles" className="hover:text-blue-800">Articles</Link></li>
-          <li><Link href="/community" className="hover:text-blue-800">Community</Link></li>
-          <li><Link href="/about" className="hover:text-blue-800">About</Link></li>
+          {navLinks.map((link) => {
+            const isActive =
+              pathname === link.href ||
+              (link.href !== "/" && pathname.startsWith(link.href))
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`${
+                    isActive
+                      ? "text-blue-800 underline underline-offset-4 font-semibold"
+                      : "text-gray-800 hover:text-blue-800"
+                  } transition-colors`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            )
+          })}
         </ul>
       </nav>
 
@@ -52,10 +78,26 @@ const Header = () => {
       {isOpen && (
         <div className="absolute top-14 left-0 w-full bg-white shadow-md md:hidden z-50">
           <ul className="flex flex-col items-center space-y-4 py-6 text-lg font-medium">
-            <li><Link href="/" onClick={() => setIsOpen(false)}>Home</Link></li>
-            <li><Link href="/articles" onClick={() => setIsOpen(false)}>Articles</Link></li>
-            <li><Link href="/community" onClick={() => setIsOpen(false)}>Community</Link></li>
-            <li><Link href="/about" onClick={() => setIsOpen(false)}>About</Link></li>
+            {navLinks.map((link) => {
+              const isActive =
+                pathname === link.href ||
+                (link.href !== "/" && pathname.startsWith(link.href))
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`${
+                      isActive
+                        ? "text-blue-800 underline underline-offset-4 font-semibold"
+                        : "text-gray-800 hover:text-blue-800"
+                    } transition-colors`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
 
           {/* Mobile Search Bar */}
