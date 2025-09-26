@@ -101,6 +101,12 @@ export default function AboutPage() {
           Subscribe to Updates
         </button>
       </section>
+
+      {/* Disclaimer */}
+        <p className="text-xs text-gray-500 italic max-w-3xl mx-auto">
+          ⚠️ Disclaimer: This website is a school project that aims to provide information on an environmental issue and 
+          to spark collective actions for the preservation and protection of the Earth’s ecosystems.
+        </p>
     </main>
   )
 }
