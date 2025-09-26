@@ -1,39 +1,53 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import { Noto_Serif } from "next/font/google"; // Import Noto Serif
+import { Noto_Serif } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+// Font
 const notoSerif = Noto_Serif({
   weight: ["400"], // Regular
   subsets: ["latin"],
   display: "swap",
 });
 
+// Metadata
 export const metadata: Metadata = {
   title: "floodwatch.ph",
   description: "Real-Time Flood News for Every Filipino.",
-  icons: { icon: [{ url: "/img/floodwatch.ph.png" }] },
+  keywords: ["floodwatch.ph", "news", "flooding", "philippines"],
+  authors: [{ name: "ariesjace" }], // ✅ Correct type for root-level authors
+  icons: {
+    icon: [{ url: "/img/floodwatch.ph.png" }],
+  },
   openGraph: {
     title: "floodwatch.ph",
     description: "Real-Time Flood News for Every Filipino.",
     type: "website",
-    authors: "ariesjace",
+    url: "https://floodwatch-ph.vercel.app", // optional but recommended
+    siteName: "FloodWatch PH",
+    images: [
+      {
+        url: "/img/floodwatch.ph.png",
+        width: 1200,
+        height: 630,
+        alt: "FloodWatch Philippines",
+      },
+    ],
   },
-  keywords: ["floodwatch.ph", "news", "news about floods"],
 };
 
+// Layout
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      {/* Apply Noto Serif globally */}
       <body className={`${notoSerif.className} antialiased`}>
         <main className="px-2 md:px-20">
           <Header />
           <section className="flex justify-between">
             {children}
-            {/*LatestNews*/}
+            {/* LatestNews */}
           </section>
         </main>
         <Footer />
