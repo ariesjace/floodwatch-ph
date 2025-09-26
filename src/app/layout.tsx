@@ -32,7 +32,6 @@ export default function RootLayout({
       <body className={trispace.className}>
         <main className="px-2 md:px-20">
           <Header />
-          {/* Navbar */}
           <section className="flex justify-between">
             {children}
             {/*LatestNews*/}
