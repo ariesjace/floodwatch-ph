@@ -1,7 +1,6 @@
 import { getNewsTopHeadlines } from '@/api'
 import { removeDuplicateData } from '@/utils'
 import Article from './Article'
-import React from 'react'
 
 const TopHeadlines = async () => {
   const newsTop = await getNewsTopHeadlines()
@@ -9,7 +8,11 @@ const TopHeadlines = async () => {
 
   return (
     <div className='w-[700px]'>
-        <Article />
+      {filterArticles.map((article,idx) => (
+        <div key={`${article?.title}-${idx}`}>
+          <Article data={article} />
+        </div>
+      ))}
     </div>
   )
 }
