@@ -6,9 +6,9 @@ import Tag from './Tag'
 const Article = ({ data }: { data: news }) => {
   return (
     <div className="py-2 border-b border-gray-300 mb-4">
-      <div className="relative w-full h-[300px]">
+      <div className="relative w-full h-[300px] bg-gray-100">
         <Image
-          src={data?.urlToImage !== null ? data?.urlToImage : '/img/news-u-logo.webp'}
+          src={data?.urlToImage ? data.urlToImage : '/img/floodwatch.ph.png'}
           alt={data?.title}
           fill
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 100vw, 100vw"
