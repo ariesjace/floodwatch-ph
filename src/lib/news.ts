@@ -17,13 +17,21 @@ function buildFloodQuery(extra?: string) {
 
 async function fetchNews(path: string, params: Record<string, string>) {
   const apiKey = process.env.NEXT_PUBLIC_API_TOKEN_NEWS;
+  if (!apiKey) {
+    console.error('NewsAPI key is missing: set NEXT_PUBLIC_API_TOKEN_NEWS')
+    return { status: 'error', totalResults: 0, articles: [], message: 'Missing API key' }
+  }
   const url = new URL(`${NEWS_API_BASE}/${path}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
   url.searchParams.set("apiKey", String(apiKey));
 
   const res = await fetch(url.toString(), { cache: "no-store" });
   if (!res.ok) {
-    throw new Error(`News API error: ${res.status}`);
+    let body: any = undefined
+    try { body = await res.json() } catch {}
+    const msg = body?.message ? `${res.status} ${body.message}` : `${res.status}`
+    console.error(`News API error: ${msg}`)
+    return { status: 'error', totalResults: 0, articles: [], message: msg }
   }
   return res.json();
 }
