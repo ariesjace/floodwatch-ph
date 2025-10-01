@@ -17,7 +17,7 @@ function buildFloodQuery(extra?: string) {
   return extra ? `${base} OR (${extra})` : base
 }
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
     const apiKey = process.env.NEXT_PUBLIC_API_TOKEN_NEWS
     const url = new URL(`${NEWS_API_BASE}/everything`)
@@ -25,7 +25,11 @@ export async function GET() {
     url.searchParams.set('q', 'flood OR storm OR typhoon OR corruption flood control AND Philippines')
     url.searchParams.set('language', 'en')
     url.searchParams.set('sortBy', 'publishedAt')
-    url.searchParams.set('pageSize', '30')
+    const { searchParams } = new URL(req.url)
+    const page = searchParams.get('page') || '1'
+    const pageSize = searchParams.get('pageSize') || '10'
+    url.searchParams.set('page', page)
+    url.searchParams.set('pageSize', pageSize)
     url.searchParams.set('apiKey', String(apiKey))
 
     const res = await fetch(url.toString(), { cache: 'no-store' })
