@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import React, { useState } from "react"
-import { Menu, X, Search } from "lucide-react" // npm install lucide-react
+import { Menu, X, Search } from "lucide-react"
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,71 +11,73 @@ const Header = () => {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/articles", label: "Articles" },
+    { href: "/news", label: "News" },
     { href: "/community", label: "Community" },
     { href: "/about", label: "About" },
   ]
 
   return (
-    <header className="flex items-center justify-between px-6 py-3 border-b border-gray-300 relative">
-      {/* Logo */}
-      <Link href="/" className="flex items-center">
-        <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold leading-none">
-          <span className="text-blue-800">flood</span>
-          <span className="text-yellow-400">watch</span>
-          <span className="text-black">.</span>
-          <span className="text-red-600">ph</span>
-        </h1>
-      </Link>
+    <header className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-300 shadow-sm">
+      <div className="flex items-center justify-between px-6 py-3 relative">
+        {/* Logo */}
+        <Link href="/" className="flex items-center">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold leading-none">
+            <span className="text-blue-800">flood</span>
+            <span className="text-yellow-400">watch</span>
+            <span className="text-black">.</span>
+            <span className="text-red-600">ph</span>
+          </h1>
+        </Link>
 
-      {/* Desktop Navbar */}
-      <nav className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
-        <ul className="flex space-x-6 text-sm sm:text-base font-medium">
-          {navLinks.map((link) => {
-            const isActive =
-              pathname === link.href ||
-              (link.href !== "/" && pathname.startsWith(link.href))
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`${
-                    isActive
-                      ? "text-blue-800 underline underline-offset-4 font-semibold"
-                      : "text-gray-800 hover:text-blue-800"
-                  } transition-colors`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      </nav>
+        {/* Desktop Navbar */}
+        <nav className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
+          <ul className="flex space-x-6 text-sm sm:text-base font-medium">
+            {navLinks.map((link) => {
+              const isActive =
+                pathname === link.href ||
+                (link.href !== "/" && pathname.startsWith(link.href))
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`${
+                      isActive
+                        ? "text-blue-800 underline underline-offset-4 font-semibold"
+                        : "text-gray-800 hover:text-blue-800"
+                    } transition-colors`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
 
-      {/* Search Bar (Desktop Only) */}
-      <div className="hidden md:flex items-center space-x-2 ml-auto">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="px-3 py-1 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button className="p-2 text-gray-600 hover:text-blue-800">
-          <Search size={20} />
+        {/* Search Bar (Desktop Only) */}
+        <div className="hidden md:flex items-center space-x-2 ml-auto">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="px-3 py-1 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button className="p-2 text-gray-600 hover:text-blue-800">
+            <Search size={20} />
+          </button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden flex items-center text-gray-700 ml-auto"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Menu Button */}
-      <button
-        className="md:hidden flex items-center text-gray-700 ml-auto"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <X size={28} /> : <Menu size={28} />}
-      </button>
-
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="absolute top-14 left-0 w-full bg-white shadow-md md:hidden z-50">
+        <div className="absolute top-full left-0 w-full bg-white shadow-md md:hidden z-40">
           <ul className="flex flex-col items-center space-y-4 py-6 text-lg font-medium">
             {navLinks.map((link) => {
               const isActive =

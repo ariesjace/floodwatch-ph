@@ -20,6 +20,7 @@ function buildFloodQuery(extra?: string) {
 export async function GET(req: Request) {
   try {
     const apiKey = process.env.NEXT_PUBLIC_API_TOKEN_NEWS
+    const msKey = process.env.NEXT_PUBLIC_MEDIASTACK_KEY || '86dc7c486cd2e49dee3115e4a22c3424'
     const url = new URL(`${NEWS_API_BASE}/everything`)
     // Query per spec and ensure Philippines context
     url.searchParams.set('q', 'flood OR storm OR typhoon OR corruption flood control AND Philippines')
@@ -33,11 +34,39 @@ export async function GET(req: Request) {
     url.searchParams.set('apiKey', String(apiKey))
 
     const res = await fetch(url.toString(), { cache: 'no-store' })
-    if (!res.ok) {
-      return NextResponse.json({ status: 'error', message: 'Failed to fetch' }, { status: res.status })
-    }
-    const data = await res.json()
-    return NextResponse.json(data, { status: 200 })
+    const data = await res.json().catch(() => ({}))
+
+    // Mediastack parallel
+    const msUrl = new URL('http://api.mediastack.com/v1/news')
+    msUrl.searchParams.set('access_key', msKey)
+    msUrl.searchParams.set('countries', 'ph')
+    msUrl.searchParams.set('languages', 'en')
+    msUrl.searchParams.set('sort', 'published_desc')
+    msUrl.searchParams.set('limit', pageSize)
+    msUrl.searchParams.set('keywords', 'flood OR storm OR typhoon OR corruption flood control')
+    const msRes = await fetch(msUrl.toString(), { cache: 'no-store' })
+    const msData = await msRes.json().catch(() => ({}))
+    const msArticles = Array.isArray(msData?.data) ? msData.data.map((x:any)=>({
+      source: { id: null, name: x.source || 'Unknown' },
+      author: x.author || null,
+      title: x.title,
+      description: x.description,
+      url: x.url,
+      urlToImage: x.image,
+      publishedAt: x.published_at,
+      content: null,
+    })) : []
+
+    const a = Array.isArray(data?.articles) ? data.articles : []
+    const merged = [...a, ...msArticles]
+    const seen = new Set<string>()
+    const deduped = merged.filter((it:any)=>{
+      const key = (it?.url || it?.title || '').toLowerCase()
+      if (!key || seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    return NextResponse.json({ status: 'ok', totalResults: deduped.length, articles: deduped }, { status: 200 })
   } catch (e) {
     return NextResponse.json({ status: 'error', message: 'Unexpected server error' }, { status: 500 })
   }

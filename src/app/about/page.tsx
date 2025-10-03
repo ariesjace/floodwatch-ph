@@ -1,9 +1,10 @@
+import Image from 'next/image'
 export default function AboutPage() {
   return (
     <main className="px-6 py-12 max-w-7xl mx-auto space-y-16">
       {/* Title */}
       <section className="text-center">
-        <h1 className="text-4xl font-bold mb-4">🌊 About FloodWatch Philippines</h1>
+        <h1 className="text-4xl font-bold mb-4">About FloodWatch Philippines</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
           We’re dedicated to understanding, documenting, and addressing the flooding crisis across the Philippines through
           research, storytelling, and community engagement.
@@ -13,7 +14,7 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="grid md:grid-cols-2 gap-8 items-center">
         <div>
-          <h2 className="text-2xl font-semibold mb-4">🎯 Our Mission</h2>
+          <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
           <p className="text-gray-700 leading-relaxed">
             FloodWatch Philippines aims to bridge the gap between complex climate science and real community concerns. We
             strive to make flood-related information accessible and understandable.
@@ -23,14 +24,20 @@ export default function AboutPage() {
             giving local voices a platform and inspiring collective action.
           </p>
         </div>
-        <div className="h-48 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
-          🏘️ Community visualization
+        <div className="relative w-full h-48 md:h-64 lg:h-72">
+          <Image
+            src="/img/poster.png"
+            alt="Community visualization poster"
+            fill
+            priority
+            className="object-cover rounded-lg shadow"
+          />
         </div>
       </section>
 
       {/* Values */}
       <section className="text-center">
-        <h2 className="text-2xl font-semibold mb-10">💡 Our Values</h2>
+        <h2 className="text-2xl font-semibold mb-10">Our Values</h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { icon: "🤝", title: "Empathy First", desc: "We listen to and prioritize community voices." },
@@ -49,7 +56,7 @@ export default function AboutPage() {
 
       {/* Team */}
       <section className="text-center">
-        <h2 className="text-2xl font-semibold mb-10">👥 Our Team</h2>
+        <h2 className="text-2xl font-semibold mb-10">Our Team</h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { name: "Julie Ann Abella", role: "📰 Journalist", desc: "Focused on documenting local flood stories." },
@@ -72,7 +79,7 @@ export default function AboutPage() {
 
       {/* Get Involved */}
       <section className="text-center">
-        <h2 className="text-2xl font-semibold mb-10">🤲 Get Involved</h2>
+        <h2 className="text-2xl font-semibold mb-10">Get Involved</h2>
         <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           <div className="p-6 border rounded-lg shadow-sm bg-white">
             <h3 className="font-semibold mb-2">📝 Share Your Story</h3>

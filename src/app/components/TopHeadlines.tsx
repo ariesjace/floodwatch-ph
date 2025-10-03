@@ -1,9 +1,9 @@
-                                                                                                                                                                                                 import { getFloodNews } from '@/lib/news'
+                                                                                                                                                                                                 import { searchFloodNews } from '@/lib/news'
 import Article from './Article'
 
 const TopHeadlines = async () => {
-  const newsTop = await getFloodNews()
-  const raw = Array.isArray((newsTop as any)?.articles) ? (newsTop as any).articles : []
+  const fromEverything = await searchFloodNews('flood OR storm OR typhoon OR corruption flood control AND Philippines')
+  const raw = Array.isArray((fromEverything as any)?.articles) ? (fromEverything as any).articles : []
   const seen = new Set<string>()
   const articles = raw.filter((a:any) => {
     const key = (a?.url || a?.title || '').toLowerCase().trim()
@@ -17,10 +17,10 @@ const TopHeadlines = async () => {
     return (
       <div className="w-full max-w-3xl mx-auto p-4">
         <div className="rounded border border-gray-200 bg-white shadow p-6 text-gray-700">
-          No flood-related top headlines found right now. Please check back later.
+          No flood-related articles found right now. Please check back later.
         </div>
       </div>
-    )                                                                                                                                                                                     
+    )
   }
 
   return (
