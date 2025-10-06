@@ -30,7 +30,7 @@ export default function HomePage() {
 
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/top-headlines"
+                href="/news"
                 className="inline-flex items-center justify-center rounded-lg bg-green-600 px-6 py-3 text-white font-medium shadow hover:bg-green-700 transition"
               >
                 View Latest News
