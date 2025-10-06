@@ -7,23 +7,6 @@ export default function HomePage() {
     <main className="w-full">
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col">
-        {/* Header that blends into hero */}
-        <header className="absolute top-0 left-0 right-0 z-20 flex justify-between items-center px-6 md:px-12 py-4 bg-white/10 backdrop-blur-md rounded-b-2xl">
-          <h2 className="text-xl font-bold text-white">FloodWatch.ph</h2>
-          <nav className="flex gap-6 text-white font-medium">
-            <Link href="/top-headlines" className="hover:text-green-300">Headlines</Link>
-            <Link href="/articles" className="hover:text-green-300">Articles</Link>
-            <Link href="/about" className="hover:text-green-300">About</Link>
-          </nav>
-          <Link
-            href="/login"
-            className="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
-          >
-            Login
-          </Link>
-        </header>
-
-        {/* Background image full */}
         <div className="absolute inset-0">
           <img
             src="/img/hero.jpg"
