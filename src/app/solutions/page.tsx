@@ -1,4 +1,5 @@
 "use client"
+import TiltedCard from "@/components/TiltedCard";
 import Image from "next/image";
 
 export default function SolutionsPage() {
@@ -32,25 +33,21 @@ export default function SolutionsPage() {
               <li><strong>Sustainable and Low-Cost:</strong> Grows stronger over time with minimal maintenance.</li>
             </ul>
           </div>
-          <div className="h-56 bg-teal-50 rounded-lg flex items-center justify-center">
-            <Image
-              src="/img/mangrove.png"
-              alt="Mangrove Reforestation"
-              width={160}
-              height={160}
-              className="object-contain"
-            />
-          </div>
-        </div>
-
-        <div className="text-sm text-gray-600 mt-6">
-          <h4 className="font-semibold mb-2">References</h4>
-          <ul className="list-disc list-inside space-y-1">
-            <li>Department of Environment and Natural Resources. (n.d.). <em>Mangrove rehabilitation projects.</em> <a href="https://denr.gov.ph" className="text-blue-600 hover:underline">denr.gov.ph</a></li>
-            <li>GMA News Online. (n.d.). <em>How mangroves protect coastal communities from storm surges.</em> <a href="https://www.gmanetwork.com/news" className="text-blue-600 hover:underline">GMA News</a></li>
-            <li>ABS-CBN News. (n.d.). <em>Philippine mangroves: Nature’s defense against climate change.</em> <a href="https://news.abs-cbn.com" className="text-blue-600 hover:underline">ABS-CBN News</a></li>
-            <li>Green Economy Coalition. (2023). <em>Philippine mangroves fight floods & provide livelihoods.</em> <a href="https://www.greeneconomycoalition.org/news-and-resources/philippine-mangroves-fight-floods" className="text-blue-600 hover:underline">Green Economy Coalition</a></li>
-          </ul>
+          {/* TiltedCard for Mangrove Image */}
+          <TiltedCard
+            imageSrc="/img/mangrove.png"
+            altText="Mangrove Reforestation"
+            captionText="Mangrove Restoration"
+            containerHeight="220px"
+            containerWidth="100%"
+            imageHeight="220px"
+            imageWidth="100%"
+            rotateAmplitude={10}
+            scaleOnHover={1.1}
+            showMobileWarning={false}
+            showTooltip={true}
+            displayOverlayContent={true}
+          />
         </div>
       </section>
 
@@ -63,15 +60,22 @@ export default function SolutionsPage() {
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="h-56 bg-teal-50 rounded-lg flex items-center justify-center">
-            <Image
-              src="/img/dredging.png"
-              alt="Dredging"
-              width={160}
-              height={160}
-              className="object-contain"
-            />
-          </div>
+          {/* TiltedCard for Dredging Image */}
+          <TiltedCard
+            imageSrc="/img/dredging.png"
+            altText="Dredging Operation"
+            captionText="River Dredging"
+            containerHeight="220px"
+            containerWidth="100%"
+            imageHeight="220px"
+            imageWidth="100%"
+            rotateAmplitude={10}
+            scaleOnHover={1.1}
+            showMobileWarning={false}
+            showTooltip={true}
+            displayOverlayContent={true}
+          />
+
           <div className="space-y-3">
             <h3 className="font-semibold text-lg">Ongoing Efforts and Impact</h3>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
@@ -81,16 +85,6 @@ export default function SolutionsPage() {
               <li>Battle for Manila Bay — integrates dredging with estero cleanup and waste segregation.</li>
             </ul>
           </div>
-        </div>
-
-        <div className="text-sm text-gray-600 mt-6">
-          <h4 className="font-semibold mb-2">Results & Benefits</h4>
-          <p>Reports show a <strong>35% reduction</strong> in floodwater levels in downstream towns after the 2022 Cagayan River dredging (DPWH Region II, 2023).</p>
-          <ul className="list-disc list-inside space-y-1 mt-2">
-            <li>Fewer flood events in CAMANAVA and Cagayan Valley.</li>
-            <li>Improved river flow and reduced overflow during typhoons.</li>
-            <li>Enhanced water quality and ecosystem health.</li>
-          </ul>
         </div>
       </section>
 
@@ -111,24 +105,23 @@ export default function SolutionsPage() {
               <li>Reduces flash flooding in urban and low-lying areas.</li>
               <li>Helps recharge groundwater, improving water supply sustainability.</li>
             </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Ongoing Efforts in the Philippines</h3>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li><strong>Imus, Cavite –</strong> The Imus Retarding Basin reduces flooding around nearby communities by storing stormwater before releasing it slowly into Imus River.</li>
-              <li><strong>Valenzuela City –</strong> The Polo Flood Retarding Basin helps lessen flooding in Valenzuela and Caloocan by temporarily holding excess river water.</li>
-              <li><strong>Marikina / Pasig Area –</strong> Proposed retention basins in the Pasig–Marikina River Basin aim to reduce overflow during extreme rainfall events.</li>
-            </ul>
           </div>
 
-          <div className="h-56 bg-green-50 rounded-lg flex items-center justify-center">
-            <Image
-              src="/img/basin.png"
-              alt="Retention Pond Project"
-              width={200}
-              height={200}
-              className="object-contain"
-            />
-          </div>
+          {/* TiltedCard for Basin Image */}
+          <TiltedCard
+            imageSrc="/img/basin.png"
+            altText="Retention Pond Project"
+            captionText="Flood Retarding Basin"
+            containerHeight="220px"
+            containerWidth="100%"
+            imageHeight="220px"
+            imageWidth="100%"
+            rotateAmplitude={10}
+            scaleOnHover={1.1}
+            showMobileWarning={false}
+            showTooltip={true}
+            displayOverlayContent={true}
+          />
         </div>
       </section>
 
@@ -141,76 +134,15 @@ export default function SolutionsPage() {
           community-driven projects that help restore ecosystems and reduce flood risks across the Philippines.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-3">
             <h3 className="font-semibold text-lg">🌿 Mangrove Reforestation</h3>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>
-                <strong>
-                  <a href="https://www.pcp4nbs.forestfoundation.ph/grants" target="_blank" className="text-blue-600 hover:underline">
-                    Forest Foundation Philippines – PCP4NbS Grants
-                  </a>
-                </strong>  
-                <br />Funds nature-based solutions and community reforestation initiatives focused on climate resilience.
-              </li>
-              <li>
-                <strong>
-                  <a href="https://www.wetlands.org/case-study/scaling-science-based-mangrove-restoration-in-the-philippines/" target="_blank" className="text-blue-600 hover:underline">
-                    Wetlands International
-                  </a>
-                </strong>  
-                <br />Supports science-based mangrove restoration and community partnerships to protect coastlines.
-              </li>
-              <li>
-                <strong>
-                  <a href="https://www.bluemarinefoundation.com/projects/mangrove-restoration-in-the-philippines/" target="_blank" className="text-blue-600 hover:underline">
-                    Blue Marine Foundation
-                  </a>
-                </strong>  
-                <br />Partners with local communities for mangrove restoration and marine conservation.
-              </li>
+              <li><strong><a href="https://www.pcp4nbs.forestfoundation.ph/grants" className="text-blue-600 hover:underline">Forest Foundation Philippines</a></strong> — Funds nature-based solutions and community reforestation projects.</li>
+              <li><strong><a href="https://www.wetlands.org" className="text-blue-600 hover:underline">Wetlands International</a></strong> — Supports science-based mangrove restoration and partnerships.</li>
+              <li><strong><a href="https://www.bluemarinefoundation.com" className="text-blue-600 hover:underline">Blue Marine Foundation</a></strong> — Restores mangroves and strengthens local conservation initiatives.</li>
             </ul>
           </div>
-
-          <div className="space-y-3">
-            <h3 className="font-semibold text-lg">💧 Flood Control & Retention Projects</h3>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>
-                <strong>
-                  <a href="https://oceanriskalliance.org/project/establishing-the-restoration-insurance-service-company/" target="_blank" className="text-blue-600 hover:underline">
-                    Ocean Risk & Resilience Action Alliance (ORRAA)
-                  </a>
-                </strong>  
-                <br />Finances projects that protect coastal areas through ecosystem-based flood protection models.
-              </li>
-              <li>
-                <strong>
-                  <a href="https://www.conservation.org" target="_blank" className="text-blue-600 hover:underline">
-                    Conservation International – Blue Carbon Initiative
-                  </a>
-                </strong>  
-                <br />Funds projects that combine carbon sequestration and flood resilience through coastal restoration.
-              </li>
-              <li>
-                <strong>
-                  <a href="https://www.greenpeace.org/seasia/" target="_blank" className="text-blue-600 hover:underline">
-                    Greenpeace Southeast Asia
-                  </a>
-                </strong>  
-                <br />Supports advocacy and community-based environmental campaigns, including flood and water resilience.
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="text-sm text-gray-600 mt-6">
-          <h4 className="font-semibold mb-2">How to Get Involved</h4>
-          <ul className="list-disc list-inside space-y-1">
-            <li>Propose a small community-based mangrove or rainwater retention project and apply for a local grant.</li>
-            <li>Partner with NGOs or universities that specialize in ecosystem restoration or climate adaptation.</li>
-            <li>Start crowdfunding through transparent platforms like GoGetFunding or The Spark Project for local eco-projects.</li>
-            <li>Highlight measurable impact — e.g., flood reduction, biodiversity increase, or community benefit — to attract sponsors.</li>
-          </ul>
         </div>
       </section>
 
@@ -235,5 +167,5 @@ export default function SolutionsPage() {
         </p>
       </section>
     </main>
-  )
+  );
 }
