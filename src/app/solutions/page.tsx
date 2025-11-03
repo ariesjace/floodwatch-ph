@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image";
 
 export default function SolutionsPage() {
   return (
@@ -31,8 +32,14 @@ export default function SolutionsPage() {
               <li><strong>Sustainable and Low-Cost:</strong> Grows stronger over time with minimal maintenance.</li>
             </ul>
           </div>
-          <div className="h-56 bg-teal-50 rounded-lg flex items-center justify-center text-5xl">
-            🌴
+          <div className="h-56 bg-teal-50 rounded-lg flex items-center justify-center">
+            <Image
+              src="/img/mangrove.png"
+              alt="Mangrove Reforestation"
+              width={160}
+              height={160}
+              className="object-contain"
+            />
           </div>
         </div>
 
@@ -56,8 +63,14 @@ export default function SolutionsPage() {
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="h-56 bg-blue-50 rounded-lg flex items-center justify-center text-5xl">
-            🏗️
+          <div className="h-56 bg-teal-50 rounded-lg flex items-center justify-center">
+            <Image
+              src="/img/dredging.png"
+              alt="Dredging"
+              width={160}
+              height={160}
+              className="object-contain"
+            />
           </div>
           <div className="space-y-3">
             <h3 className="font-semibold text-lg">Ongoing Efforts and Impact</h3>
@@ -79,14 +92,124 @@ export default function SolutionsPage() {
             <li>Enhanced water quality and ecosystem health.</li>
           </ul>
         </div>
+      </section>
+
+      {/* Retention Ponds Section */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold">🏞️ Construction of Retention Ponds (Flood Retarding Basins)</h2>
+        <p className="text-gray-700 leading-relaxed">
+          A retention pond stores excess rainwater during heavy rains and then releases it gradually to prevent flooding. 
+          It helps reduce water overflow and protects low-lying communities from sudden flood buildup.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="space-y-3">
+            <h3 className="font-semibold text-lg">Impacts</h3>
+            <ul className="list-disc list-inside text-gray-700 space-y-2">
+              <li>Temporarily stores excess rainwater during storms or heavy rain.</li>
+              <li>Releases water slowly back into rivers and drainage systems to prevent overflow.</li>
+              <li>Reduces flash flooding in urban and low-lying areas.</li>
+              <li>Helps recharge groundwater, improving water supply sustainability.</li>
+            </ul>
+
+            <h3 className="font-semibold text-lg mt-4">Ongoing Efforts in the Philippines</h3>
+            <ul className="list-disc list-inside text-gray-700 space-y-2">
+              <li><strong>Imus, Cavite –</strong> The Imus Retarding Basin reduces flooding around nearby communities by storing stormwater before releasing it slowly into Imus River.</li>
+              <li><strong>Valenzuela City –</strong> The Polo Flood Retarding Basin helps lessen flooding in Valenzuela and Caloocan by temporarily holding excess river water.</li>
+              <li><strong>Marikina / Pasig Area –</strong> Proposed retention basins in the Pasig–Marikina River Basin aim to reduce overflow during extreme rainfall events.</li>
+            </ul>
+          </div>
+
+          <div className="h-56 bg-green-50 rounded-lg flex items-center justify-center">
+            <Image
+              src="/img/basin.png"
+              alt="Retention Pond Project"
+              width={200}
+              height={200}
+              className="object-contain"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Fundraising and NGO Support Section */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold">💰 Fundraising & NGO Support for Flood Resilience Projects</h2>
+        <p className="text-gray-700 leading-relaxed">
+          Sustainable flood management doesn’t rely on government efforts alone. 
+          Many non-governmental organizations (NGOs), environmental groups, and private donors actively fund and support 
+          community-driven projects that help restore ecosystems and reduce flood risks across the Philippines.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-8 items-start">
+          <div className="space-y-3">
+            <h3 className="font-semibold text-lg">🌿 Mangrove Reforestation</h3>
+            <ul className="list-disc list-inside text-gray-700 space-y-2">
+              <li>
+                <strong>
+                  <a href="https://www.pcp4nbs.forestfoundation.ph/grants" target="_blank" className="text-blue-600 hover:underline">
+                    Forest Foundation Philippines – PCP4NbS Grants
+                  </a>
+                </strong>  
+                <br />Funds nature-based solutions and community reforestation initiatives focused on climate resilience.
+              </li>
+              <li>
+                <strong>
+                  <a href="https://www.wetlands.org/case-study/scaling-science-based-mangrove-restoration-in-the-philippines/" target="_blank" className="text-blue-600 hover:underline">
+                    Wetlands International
+                  </a>
+                </strong>  
+                <br />Supports science-based mangrove restoration and community partnerships to protect coastlines.
+              </li>
+              <li>
+                <strong>
+                  <a href="https://www.bluemarinefoundation.com/projects/mangrove-restoration-in-the-philippines/" target="_blank" className="text-blue-600 hover:underline">
+                    Blue Marine Foundation
+                  </a>
+                </strong>  
+                <br />Partners with local communities for mangrove restoration and marine conservation.
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="font-semibold text-lg">💧 Flood Control & Retention Projects</h3>
+            <ul className="list-disc list-inside text-gray-700 space-y-2">
+              <li>
+                <strong>
+                  <a href="https://oceanriskalliance.org/project/establishing-the-restoration-insurance-service-company/" target="_blank" className="text-blue-600 hover:underline">
+                    Ocean Risk & Resilience Action Alliance (ORRAA)
+                  </a>
+                </strong>  
+                <br />Finances projects that protect coastal areas through ecosystem-based flood protection models.
+              </li>
+              <li>
+                <strong>
+                  <a href="https://www.conservation.org" target="_blank" className="text-blue-600 hover:underline">
+                    Conservation International – Blue Carbon Initiative
+                  </a>
+                </strong>  
+                <br />Funds projects that combine carbon sequestration and flood resilience through coastal restoration.
+              </li>
+              <li>
+                <strong>
+                  <a href="https://www.greenpeace.org/seasia/" target="_blank" className="text-blue-600 hover:underline">
+                    Greenpeace Southeast Asia
+                  </a>
+                </strong>  
+                <br />Supports advocacy and community-based environmental campaigns, including flood and water resilience.
+              </li>
+            </ul>
+          </div>
+        </div>
 
         <div className="text-sm text-gray-600 mt-6">
-          <h4 className="font-semibold mb-2">Supporting Policies</h4>
+          <h4 className="font-semibold mb-2">How to Get Involved</h4>
           <ul className="list-disc list-inside space-y-1">
-            <li><a href="https://www.officialgazette.gov.ph/2004/03/22/republic-act-no-9275/" className="text-blue-600 hover:underline">Republic Act No. 9275 – Philippine Clean Water Act of 2004</a></li>
-            <li>DPWH Department Order No. 50, s. 2014 – Guidelines for environmentally safe dredging operations.</li>
-            <li>Flood Management Master Plan for Metro Manila and Surrounding Areas (DPWH–World Bank).</li>
-            <li>Battle for Manila Bay (DENR, 2019–present).</li>
+            <li>Propose a small community-based mangrove or rainwater retention project and apply for a local grant.</li>
+            <li>Partner with NGOs or universities that specialize in ecosystem restoration or climate adaptation.</li>
+            <li>Start crowdfunding through transparent platforms like GoGetFunding or The Spark Project for local eco-projects.</li>
+            <li>Highlight measurable impact — e.g., flood reduction, biodiversity increase, or community benefit — to attract sponsors.</li>
           </ul>
         </div>
       </section>
