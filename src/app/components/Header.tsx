@@ -1,127 +1,77 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname } from 'next/navigation'
 import React, { useState } from "react"
-import { Menu, X, Search } from "lucide-react"
+import { Menu, X } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/news", label: "News" },
+    { href: "/articles", label: "Articles" },
     { href: "/solutions", label: "Solutions" },
     { href: "/community", label: "Community" },
     { href: "/about", label: "About" },
   ]
 
   return (
-    <>
-      {/* Fixed Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-white/40 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div className="flex items-center justify-between px-6 py-4 relative max-w-7xl mx-auto">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold leading-none">
-              <span className="text-blue-800">flood</span>
-              <span className="text-yellow-400">watch</span>
-              <span className="text-black">.</span>
-              <span className="text-red-600">ph</span>
-            </h1>
-          </Link>
-
-          {/* Desktop Navbar */}
-          <nav className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
-            <ul className="flex space-x-8 text-sm sm:text-base font-medium">
-              {navLinks.map((link) => {
-                const isActive =
-                  pathname === link.href ||
-                  (link.href !== "/" && pathname.startsWith(link.href))
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className={`${
-                        isActive
-                          ? "text-blue-800 underline underline-offset-4 font-semibold"
-                          : "text-gray-800 hover:text-blue-800"
-                      } transition-colors`}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </nav>
-
-          {/* Search Bar (Desktop Only) */}
-          <div className="hidden md:flex items-center space-x-2 ml-auto">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="px-3 py-1 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button className="p-2 text-gray-600 hover:text-blue-800">
-              <Search size={20} />
-            </button>
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 max-w-7xl items-center justify-between mx-auto px-4 md:px-6">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 font-bold">
+          <div className="text-lg md:text-xl">
+            <span className="text-blue-600">flood</span>
+            <span className="text-amber-400">watch</span>
+            <span className="text-red-600">.ph</span>
           </div>
+        </Link>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden flex items-center text-gray-700 ml-auto"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive ? "text-primary font-semibold" : "text-muted-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
+        </nav>
 
-        {/* Mobile Dropdown */}
-        {isOpen && (
-          <div className="absolute top-full left-0 w-full bg-white shadow-md md:hidden z-40 border-t border-gray-200">
-            <ul className="flex flex-col items-center space-y-4 py-6 text-lg font-medium">
-              {navLinks.map((link) => {
-                const isActive =
-                  pathname === link.href ||
-                  (link.href !== "/" && pathname.startsWith(link.href))
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`${
-                        isActive
-                          ? "text-blue-800 underline underline-offset-4 font-semibold"
-                          : "text-gray-800 hover:text-blue-800"
-                      } transition-colors`}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-
-            {/* Mobile Search Bar */}
-            <div className="flex items-center space-x-2 px-6 pb-4">
-              <input
-                type="text"
-                placeholder="Search..."
-                className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <button className="p-2 text-gray-600 hover:text-blue-800">
-                <Search size={20} />
-              </button>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Spacer to prevent obstruction */}
-      <div className="h-20"></div>
-    </>
+        {/* Mobile Navigation */}
+        <Sheet>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="ghost" size="icon">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right">
+            <nav className="flex flex-col gap-4 mt-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
+      </div>
+    </header>
   )
 }
 

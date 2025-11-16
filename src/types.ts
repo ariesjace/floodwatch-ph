@@ -1,13 +1,15 @@
-export type news = {
-  source: {
-    id: string,
-    name: string
-  },
-  author: string,
-  title: string,
-  description: string,
-  url: string,
-  urlToImage: string,
-  publishedAt: string,
-  content: string
+export type ArticleSource = {
+  id: string | null
+  name: string
+}
+
+export type StaticArticle = {
+  id: string
+  title: string
+  description: string
+  source: string
+  url: string
+  date: string
+  category: string
+  imageUrl?: string
 }

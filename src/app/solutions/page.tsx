@@ -1,171 +1,262 @@
 "use client"
-import TiltedCard from "@/components/TiltedCard";
-import Image from "next/image";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Image from "next/image"
 
 export default function SolutionsPage() {
   return (
-    <main className="px-6 py-12 max-w-6xl mx-auto space-y-16">
-      {/* Header */}
-      <section className="text-center">
-        <h1 className="text-4xl font-bold mb-4">💡 Flood Solutions in the Philippines</h1>
-        <p className="text-gray-600 max-w-3xl mx-auto">
-          Discover sustainable and science-based strategies that help communities across the Philippines
-          reduce flood risks, protect ecosystems, and strengthen climate resilience.
-        </p>
-      </section>
+    <main className="w-full py-12 md:py-20">
+      <div className="container max-w-6xl mx-auto px-4 md:px-6 space-y-16">
+        {/* Header */}
+        <section className="text-center space-y-4">
+          <h1 className="text-4xl md:text-5xl font-bold">Flood Solutions</h1>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Discover sustainable and science-based strategies that help communities reduce flood risks, protect ecosystems, and strengthen climate resilience.
+          </p>
+        </section>
 
-      {/* Mangrove Reforestation */}
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">🌿 Mangrove Reforestation</h2>
-        <p className="text-gray-700 leading-relaxed">
-          Mangrove reforestation is one of the most effective and eco-friendly ways to reduce flooding in the Philippines.
-          These coastal trees act as natural barriers that protect communities from strong waves, storm surges, and rising tides.
-        </p>
+        {/* Solutions Tabs */}
+        <Tabs defaultValue="mangrove" className="w-full">
+          <TabsList className="grid w-full md:w-fit md:mx-auto md:grid-cols-4">
+            <TabsTrigger value="mangrove">Mangroves</TabsTrigger>
+            <TabsTrigger value="dredging">Dredging</TabsTrigger>
+            <TabsTrigger value="retention">Retention Ponds</TabsTrigger>
+            <TabsTrigger value="funding">Funding</TabsTrigger>
+          </TabsList>
 
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-3">
-            <h3 className="font-semibold text-lg">How Mangroves Help Prevent Flooding</h3>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li><strong>Natural Flood Protection:</strong> Roots slow down waves and absorb excess water.</li>
-              <li><strong>Prevents Erosion:</strong> Holds soil in place and stabilizes coastlines.</li>
-              <li><strong>Supports Marine Life:</strong> Serves as nurseries for fish, crabs, and other sea life.</li>
-              <li><strong>Cleans the Environment:</strong> Filters pollutants and traps sediments.</li>
-              <li><strong>Sustainable and Low-Cost:</strong> Grows stronger over time with minimal maintenance.</li>
-            </ul>
-          </div>
-          {/* TiltedCard for Mangrove Image */}
-          <TiltedCard
-            imageSrc="/img/mangrove.png"
-            altText="Mangrove Reforestation"
-            captionText="Mangrove Restoration"
-            containerHeight="220px"
-            containerWidth="100%"
-            imageHeight="220px"
-            imageWidth="100%"
-            rotateAmplitude={10}
-            scaleOnHover={1.1}
-            showMobileWarning={false}
-            showTooltip={true}
-            displayOverlayContent={true}
-          />
+          {/* Mangrove Solution */}
+          <TabsContent value="mangrove" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-3xl">🌿</span>
+                  <div>
+                    <CardTitle className="text-2xl">Mangrove Reforestation</CardTitle>
+                    <CardDescription>Natural flood protection through coastal restoration</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <p className="text-muted-foreground">
+                  Mangrove reforestation is one of the most effective and eco-friendly ways to reduce flooding in the Philippines. 
+                  These coastal trees act as natural barriers that protect communities from strong waves, storm surges, and rising tides.
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6 items-start">
+                  {/* Text Content */}
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-lg">How Mangroves Help Prevent Flooding</h3>
+                    <ul className="space-y-3">
+                      {[
+                        { icon: '🌊', title: 'Natural Flood Protection', desc: 'Roots slow down waves and absorb excess water.' },
+                        { icon: '🏔️', title: 'Prevents Erosion', desc: 'Holds soil in place and stabilizes coastlines.' },
+                        { icon: '🐟', title: 'Supports Marine Life', desc: 'Serves as nurseries for fish, crabs, and sea life.' },
+                        { icon: '🌍', title: 'Cleans the Environment', desc: 'Filters pollutants and traps sediments.' },
+                        { icon: '✅', title: 'Sustainable & Low-Cost', desc: 'Grows stronger over time with minimal maintenance.' }
+                      ].map((item, idx) => (
+                        <div key={idx} className="flex gap-3">
+                          <span className="text-xl flex-shrink-0">{item.icon}</span>
+                          <div>
+                            <p className="font-semibold text-sm">{item.title}</p>
+                            <p className="text-xs text-muted-foreground">{item.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Image */}
+                  <div className="relative rounded-lg overflow-hidden h-80 md:h-96">
+                    <Image
+                      src="/img/mangrove.png"
+                      alt="Mangrove Reforestation"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Dredging Solution */}
+          <TabsContent value="dredging" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-3xl">🚜</span>
+                  <div>
+                    <CardTitle className="text-2xl">Dredging Operations</CardTitle>
+                    <CardDescription>Clearing waterways for improved flow</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <p className="text-muted-foreground">
+                  Dredging is the removal of sediments, debris, and waste from waterways. It is one of the most practical and effective flood control strategies for the Philippines.
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6 items-start">
+                  {/* Image */}
+                  <div className="relative rounded-lg overflow-hidden h-80 md:h-96 order-2 md:order-1">
+                    <Image
+                      src="/img/dredging.png"
+                      alt="Dredging Operation"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="space-y-4 order-1 md:order-2">
+                    <h3 className="font-semibold text-lg">Ongoing Efforts and Impact</h3>
+                    <div className="space-y-3">
+                      {[
+                        { project: 'Cagayan River Restoration', desc: 'Deepening and widening channels to reduce flooding.' },
+                        { project: 'Pasig River Dredging', desc: 'Over 1.2M metric tons of silt removed, improving flow.' },
+                        { project: 'Tullahan–Tinajeros Rehabilitation', desc: 'Reduced flooding in CAMANAVA areas.' },
+                        { project: 'Battle for Manila Bay', desc: 'Integrates dredging with estero cleanup and waste segregation.' }
+                      ].map((item, idx) => (
+                        <div key={idx} className="p-3 bg-muted rounded-lg">
+                          <p className="font-semibold text-sm">{item.project}</p>
+                          <p className="text-xs text-muted-foreground">{item.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Retention Ponds */}
+          <TabsContent value="retention" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-3xl">🏞️</span>
+                  <div>
+                    <CardTitle className="text-2xl">Retention Ponds</CardTitle>
+                    <CardDescription>Water storage basins for flood control</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <p className="text-muted-foreground">
+                  Retention ponds store excess rainwater during heavy rains and gradually release it to prevent flooding. They reduce water overflow and protect low-lying communities.
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6 items-start">
+                  {/* Text Content */}
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-lg">Key Benefits</h3>
+                    <div className="space-y-3">
+                      {[
+                        'Temporarily stores excess rainwater during storms',
+                        'Releases water slowly to prevent overflow',
+                        'Reduces flash flooding in urban and low-lying areas',
+                        'Helps recharge groundwater supplies',
+                        'Improves water supply sustainability'
+                      ].map((benefit, idx) => (
+                        <div key={idx} className="flex gap-3">
+                          <span className="text-primary mt-1">✓</span>
+                          <p className="text-sm">{benefit}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Image */}
+                  <div className="relative rounded-lg overflow-hidden h-80 md:h-96">
+                    <Image
+                      src="/img/basin.png"
+                      alt="Retention Pond"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Funding Support */}
+          <TabsContent value="funding" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-3xl">💰</span>
+                  <div>
+                    <CardTitle className="text-2xl">Funding & NGO Support</CardTitle>
+                    <CardDescription>Organizations supporting flood resilience projects</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <p className="text-muted-foreground">
+                  Sustainable flood management relies on partnerships between government, NGOs, and private donors to fund community-driven projects across the Philippines.
+                </p>
+
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Supporting Organizations</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {[
+                      {
+                        name: 'Forest Foundation Philippines',
+                        focus: 'Mangrove Reforestation',
+                        desc: 'Funds nature-based solutions and community reforestation projects'
+                      },
+                      {
+                        name: 'Wetlands International',
+                        focus: 'Wetland Restoration',
+                        desc: 'Supports science-based mangrove restoration and partnerships'
+                      },
+                      {
+                        name: 'Blue Marine Foundation',
+                        focus: 'Coastal Conservation',
+                        desc: 'Restores mangroves and strengthens local conservation initiatives'
+                      },
+                      {
+                        name: 'Philippine NGO Coalition',
+                        focus: 'Community Programs',
+                        desc: 'Coordinates flood preparedness and community resilience efforts'
+                      }
+                    ].map((org, idx) => (
+                      <Card key={idx} className="bg-muted/50">
+                        <CardContent className="pt-4">
+                          <Badge className="mb-2">{org.focus}</Badge>
+                          <h4 className="font-semibold text-sm mb-2">{org.name}</h4>
+                          <p className="text-xs text-muted-foreground">{org.desc}</p>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+
+        {/* CTA Section */}
+        <section className="bg-primary text-primary-foreground rounded-lg p-8 md:p-12 text-center space-y-6">
+          <h2 className="text-3xl font-bold">Join the Movement</h2>
+          <p className="text-lg opacity-90 max-w-2xl mx-auto">
+            Flood resilience starts with awareness and collective action. Support mangrove planting drives, community cleanups, and transparent flood management efforts.
+          </p>
+          <Button variant="secondary" size="lg">
+            Get Involved in Your Community
+          </Button>
+        </section>
+
+        {/* Disclaimer */}
+        <div className="text-center text-xs text-muted-foreground border-t pt-8">
+          <p>
+            This website is part of a school project aimed at providing information on environmental issues and inspiring collective action for ecosystem preservation.
+          </p>
         </div>
-      </section>
-
-      {/* Dredging Section */}
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">🚜 Dredging as a Sustainable Flood Control Measure</h2>
-        <p className="text-gray-700 leading-relaxed">
-          Flooding in the Philippines is intensified by heavy rainfall, typhoons, rapid urbanization, and poor waste management.
-          Dredging — the removal of sediments, debris, and waste from waterways — is one of the most practical and effective flood control strategies.
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          {/* TiltedCard for Dredging Image */}
-          <TiltedCard
-            imageSrc="/img/dredging.png"
-            altText="Dredging Operation"
-            captionText="River Dredging"
-            containerHeight="220px"
-            containerWidth="100%"
-            imageHeight="220px"
-            imageWidth="100%"
-            rotateAmplitude={10}
-            scaleOnHover={1.1}
-            showMobileWarning={false}
-            showTooltip={true}
-            displayOverlayContent={true}
-          />
-
-          <div className="space-y-3">
-            <h3 className="font-semibold text-lg">Ongoing Efforts and Impact</h3>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>Cagayan River Restoration Project — deepening and widening channels to reduce flooding.</li>
-              <li>Pasig River Dredging — over 1.2M metric tons of silt removed, improving flow to Manila Bay.</li>
-              <li>Tullahan–Tinajeros River Rehabilitation — reduced flooding in CAMANAVA areas.</li>
-              <li>Battle for Manila Bay — integrates dredging with estero cleanup and waste segregation.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Retention Ponds Section */}
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">🏞️ Construction of Retention Ponds (Flood Retarding Basins)</h2>
-        <p className="text-gray-700 leading-relaxed">
-          A retention pond stores excess rainwater during heavy rains and then releases it gradually to prevent flooding. 
-          It helps reduce water overflow and protects low-lying communities from sudden flood buildup.
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-3">
-            <h3 className="font-semibold text-lg">Impacts</h3>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>Temporarily stores excess rainwater during storms or heavy rain.</li>
-              <li>Releases water slowly back into rivers and drainage systems to prevent overflow.</li>
-              <li>Reduces flash flooding in urban and low-lying areas.</li>
-              <li>Helps recharge groundwater, improving water supply sustainability.</li>
-            </ul>
-          </div>
-
-          {/* TiltedCard for Basin Image */}
-          <TiltedCard
-            imageSrc="/img/basin.png"
-            altText="Retention Pond Project"
-            captionText="Flood Retarding Basin"
-            containerHeight="220px"
-            containerWidth="100%"
-            imageHeight="220px"
-            imageWidth="100%"
-            rotateAmplitude={10}
-            scaleOnHover={1.1}
-            showMobileWarning={false}
-            showTooltip={true}
-            displayOverlayContent={true}
-          />
-        </div>
-      </section>
-
-      {/* Fundraising and NGO Support Section */}
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">💰 Fundraising & NGO Support for Flood Resilience Projects</h2>
-        <p className="text-gray-700 leading-relaxed">
-          Sustainable flood management doesn’t rely on government efforts alone. 
-          Many non-governmental organizations (NGOs), environmental groups, and private donors actively fund and support 
-          community-driven projects that help restore ecosystems and reduce flood risks across the Philippines.
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-3">
-            <h3 className="font-semibold text-lg">🌿 Mangrove Reforestation</h3>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li><strong><a href="https://www.pcp4nbs.forestfoundation.ph/grants" className="text-blue-600 hover:underline">Forest Foundation Philippines</a></strong> — Funds nature-based solutions and community reforestation projects.</li>
-              <li><strong><a href="https://www.wetlands.org" className="text-blue-600 hover:underline">Wetlands International</a></strong> — Supports science-based mangrove restoration and partnerships.</li>
-              <li><strong><a href="https://www.bluemarinefoundation.com" className="text-blue-600 hover:underline">Blue Marine Foundation</a></strong> — Restores mangroves and strengthens local conservation initiatives.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="text-center">
-        <h2 className="text-2xl font-semibold mb-4">🌏 Join the Movement</h2>
-        <p className="text-gray-600 mb-6">
-          Flood resilience starts with awareness and collective action. Support mangrove planting drives, 
-          community cleanups, and transparent flood management efforts in your area.
-        </p>
-        <button className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition">
-          Get Involved
-        </button>
-      </section>
-
-      {/* Disclaimer */}
-      <section className="text-center text-sm text-gray-500 border-t pt-6">
-        <p>
-          Disclaimer: This website and its contents are part of a <strong>school project</strong> that aims to provide 
-          information on environmental issues and inspire collective actions for the preservation and protection 
-          of the Earth’s ecosystems.
-        </p>
-      </section>
+      </div>
     </main>
-  );
+  )
 }

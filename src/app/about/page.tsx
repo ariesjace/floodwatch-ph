@@ -1,119 +1,249 @@
-import Image from 'next/image'
-export default function AboutPage() {
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { AlertTriangle, Phone, MapPin, Info } from 'lucide-react'
+import Image from "next/image"
+
+export default function Community() {
+  const emergencyHotlines = [
+    {
+      name: 'Philippine Red Cross',
+      hotline: '143, (02) 8790-2300',
+      icon: '/img/redcross.png',
+      priority: 'high'
+    },
+    {
+      name: 'NDRRMC (Disaster Mgmt)',
+      hotline: '(02) 8911-5061 to 65',
+      icon: '/img/ndrrmc.png',
+      priority: 'high'
+    },
+    {
+      name: 'DSWD (Social Welfare)',
+      hotline: '(02) 931-8101 to 07',
+      icon: '/img/dswd.png',
+      priority: 'high'
+    },
+    {
+      name: 'PNP (Police)',
+      hotline: '117 / (02) 8722-0650',
+      icon: '/img/pnp.png',
+      priority: 'high'
+    },
+    {
+      name: 'BFP (Fire & Rescue)',
+      hotline: '(02) 8426-0219',
+      icon: '/img/bfp.png',
+      priority: 'high'
+    },
+    {
+      name: 'MMDA (Metro Manila)',
+      hotline: '136',
+      icon: '/img/mmda.png',
+      priority: 'medium'
+    }
+  ]
+
+  const preparednessTips = [
+    'Always prepare an emergency go-bag with essentials',
+    'Charge phones and power banks before the storm',
+    'Stay updated with PAGASA weather bulletins',
+    'Know your nearest evacuation centers',
+    'Keep important documents in waterproof containers',
+    'Stock clean drinking water and non-perishable food',
+    'Have first aid kits readily available',
+    'Know how to turn off utilities (gas, electricity)'
+  ]
+
+  const cautionsDuringFloods = [
+    'Avoid walking or driving through floodwaters',
+    'Beware of electrical wires submerged in water',
+    'Move to higher ground immediately when floods rise',
+    'Follow local government evacuation orders strictly',
+    'Assist children, elderly, and persons with disabilities first',
+    'Do not touch dead animals or contaminated objects',
+    'Stay away from swept away debris and structures'
+  ]
+
   return (
-    <main className="px-6 py-12 max-w-7xl mx-auto space-y-16">
-      {/* Title */}
-      <section className="text-center">
-        <h1 className="text-4xl font-bold mb-4">About FloodWatch Philippines</h1>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          We’re dedicated to understanding, documenting, and addressing the flooding crisis across the Philippines through
-          research, storytelling, and community engagement.
-        </p>
-      </section>
-
-      {/* Mission */}
-      <section className="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
-          <p className="text-gray-700 leading-relaxed">
-            FloodWatch Philippines aims to bridge the gap between complex climate science and real community concerns. We
-            strive to make flood-related information accessible and understandable.
+    <main className="w-full py-12 md:py-20">
+      <div className="container max-w-6xl mx-auto px-4 md:px-6 space-y-12">
+        {/* Header */}
+        <section className="text-center space-y-4">
+          <h1 className="text-4xl md:text-5xl font-bold">Community Support</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Emergency hotlines, safety tips, and resources to keep you and your family safe during floods and typhoons.
           </p>
-          <p className="mt-4 text-gray-700 leading-relaxed">
-            Through engagement, research, and media, we highlight the real impacts of flooding across the Philippines,
-            giving local voices a platform and inspiring collective action.
-          </p>
-        </div>
-        <div className="relative w-full h-48 md:h-64 lg:h-72">
-          <Image
-            src="/img/poster.png"
-            alt="Community visualization poster"
-            fill
-            priority
-            className="object-cover rounded-lg shadow"
-          />
-        </div>
-      </section>
+        </section>
 
-      {/* Values */}
-      <section className="text-center">
-        <h2 className="text-2xl font-semibold mb-10">Our Values</h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { icon: "🤝", title: "Empathy First", desc: "We listen to and prioritize community voices." },
-            { icon: "🛠️", title: "Solution-Oriented", desc: "We work toward practical flood resilience strategies." },
-            { icon: "🌍", title: "Community-Driven", desc: "We build partnerships across sectors and groups." },
-            { icon: "⚖️", title: "Anti-Corruption", desc: "We hold the powerful accountable, so the people never drown in silence." },
-          ].map((val, idx) => (
-            <div key={idx} className="p-6 border rounded-lg shadow-sm bg-white">
-              <div className="text-3xl mb-3">{val.icon}</div>
-              <h3 className="font-semibold text-lg mb-2">{val.title}</h3>
-              <p className="text-gray-600 text-sm">{val.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+        {/* Emergency Alert */}
+        <Alert variant="destructive">
+          <AlertTriangle className="h-4 w-4" />
+          <AlertTitle>In Case of Emergency</AlertTitle>
+          <AlertDescription>
+            Immediately move to higher ground and call the appropriate hotlines below for assistance.
+          </AlertDescription>
+        </Alert>
 
-      {/* Team */}
-      <section className="text-center">
-        <h2 className="text-2xl font-semibold mb-10">Our Team</h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { name: "Julie Ann Abella", role: "📰 Journalist", desc: "Focused on documenting local flood stories." },
-            { name: "Rey Lorenz Carreon", role: "🔬 Scientist", desc: "Provides expertise on climate science." },
-            { name: "Maria Precy Ipanag", role: "🌱 Community Leader", desc: "Connects initiatives with grassroots groups." },
-            { name: "Aries Jace Balgos", role: "💻 Technologist", desc: "Develops digital tools for awareness." },
-          ].map((member, idx) => (
-            <div key={idx} className="p-6 border rounded-lg shadow-sm bg-white">
-              <div className="w-12 h-12 rounded-full bg-teal-600 text-white flex items-center justify-center mx-auto mb-4 text-lg font-bold">
-                {member.name.split(" ")[0][0]}
-                {member.name.split(" ")[1][0]}
-              </div>
-              <h3 className="font-semibold">{member.name}</h3>
-              <p className="text-sm text-blue-700">{member.role}</p>
-              <p className="mt-2 text-gray-600 text-sm">{member.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Get Involved */}
-      <section className="text-center">
-        <h2 className="text-2xl font-semibold mb-10">Get Involved</h2>
-        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          <div className="p-6 border rounded-lg shadow-sm bg-white">
-            <h3 className="font-semibold mb-2">📝 Share Your Story</h3>
-            <p className="text-sm text-gray-600 mb-4">
-              Are you a researcher, community leader, or citizen with a story to share?
+        {/* Emergency Hotlines */}
+        <section className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold flex items-center gap-2 mb-4">
+              <Phone className="h-6 w-6" />
+              Emergency Hotlines
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Save these numbers or contact them immediately during emergencies.
             </p>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Contribute</button>
           </div>
-          <div className="p-6 border rounded-lg shadow-sm bg-white">
-            <h3 className="font-semibold mb-2">🤝 Community Partnership</h3>
-            <p className="text-sm text-gray-600 mb-4">
-              Partner with us to strengthen flood awareness and resilience programs.
-            </p>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Work with us</button>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {emergencyHotlines.map((hotline, idx) => (
+              <Card key={idx} className="hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="relative w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
+                      <Image
+                        src={hotline.icon || "/placeholder.svg"}
+                        alt={hotline.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-semibold text-sm">{hotline.name}</h3>
+                        {hotline.priority === 'high' && (
+                          <Badge variant="destructive" className="text-xs">Priority</Badge>
+                        )}
+                      </div>
+                      <a
+                        href={`tel:${hotline.hotline.split(' ')[0]}`}
+                        className="text-primary font-mono text-sm hover:underline"
+                      >
+                        {hotline.hotline}
+                      </a>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
+        </section>
+
+        {/* Preparedness & Safety Sections */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Preparedness Tips */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <span className="text-2xl">✓</span>
+                Preparedness Tips
+              </CardTitle>
+              <CardDescription>Get ready before the season starts</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                {preparednessTips.map((tip, idx) => (
+                  <li key={idx} className="flex gap-3 text-sm">
+                    <span className="text-primary flex-shrink-0 mt-0.5">•</span>
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+
+          {/* Cautions During Floods */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <AlertTriangle className="h-5 w-5 text-destructive" />
+                Safety During Floods
+              </CardTitle>
+              <CardDescription>What to do when floodwaters rise</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                {cautionsDuringFloods.map((caution, idx) => (
+                  <li key={idx} className="flex gap-3 text-sm">
+                    <span className="text-destructive flex-shrink-0 mt-0.5">!</span>
+                    <span>{caution}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
         </div>
-      </section>
 
-      {/* Join */}
-      <section className="text-center">
-        <h2 className="text-xl font-semibold mb-4">🚀 Join Our Mission</h2>
-        <p className="text-gray-600 mb-6">
-          Stay updated with relevant research and stories. Together, we can build more resilient communities across the Philippines.
-        </p>
-        <button className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700">
-          Subscribe to Updates
-        </button>
-      </section>
+        {/* Community Action Section */}
+        <Card className="bg-primary text-primary-foreground">
+          <CardHeader>
+            <CardTitle className="text-2xl">Community Involvement</CardTitle>
+            <CardDescription className="text-primary-foreground/80">
+              How you can help build a more resilient community
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p>
+              Flood resilience is built together. Join community programs, participate in cleanup drives, and help your neighbors prepare for disasters.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4">
+              {[
+                { title: 'Share Knowledge', desc: 'Educate friends and family about flood preparedness' },
+                { title: 'Community Cleanup', desc: 'Join drainage system maintenance in your area' },
+                { title: 'Support Networks', desc: 'Help vulnerable families prepare and evacuate' }
+              ].map((action, idx) => (
+                <div key={idx} className="p-3 bg-primary-foreground/10 rounded-lg">
+                  <p className="font-semibold text-sm">{action.title}</p>
+                  <p className="text-xs opacity-90">{action.desc}</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
-      {/* Disclaimer */}
-        <p className="text-xs text-gray-500 italic max-w-3xl mx-auto">
-          ⚠️ Disclaimer: This website is a school project that aims to provide information on an environmental issue and 
-          to spark collective actions for the preservation and protection of the Earth’s ecosystems.
-        </p>
+        {/* Resources Section */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-bold">Additional Resources</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Weather Updates</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>PAGASA (Philippine Atmospheric, Geophysical and Astronomical Services Administration)</p>
+                <Button variant="outline" size="sm" className="w-full">
+                  Visit PAGASA
+                </Button>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Evacuation Centers</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>Contact your local government unit (LGU) for nearest evacuation centers and relief assistance.</p>
+                <Button variant="outline" size="sm" className="w-full">
+                  Find Your LGU
+                </Button>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">More Information</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>Read our articles and explore solutions to understand and prepare for flooding.</p>
+                <Button variant="outline" size="sm" className="w-full">
+                  Learn More
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      </div>
     </main>
   )
 }

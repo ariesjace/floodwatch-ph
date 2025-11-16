@@ -114,11 +114,56 @@ body {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Add these theme variables for better color consistency */
+@layer base {
+  :root {
+    --primary: #2563eb; /* Blue for primary actions */
+    --primary-foreground: #ffffff;
+    --secondary: #f59e0b; /* Amber for accents */
+    --secondary-foreground: #000000;
+    --muted: #f3f4f6; /* Light gray */
+    --muted-foreground: #6b7280; /* Dark gray */
+    --destructive: #dc2626; /* Red for alerts */
+  }
+
+  .dark {
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: #fbbf24;
+    --secondary-foreground: #000000;
+    --muted: #1f2937;
+    --muted-foreground: #9ca3af;
+    --destructive: #ef4444;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors;
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 }

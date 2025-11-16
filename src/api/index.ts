@@ -1,9 +1,18 @@
-export const getNewsTopHeadlines = async () => {
-    const newsData = await fetch(`https://newsapi.org/v2/top-headlines?country=ph&apiKey=${process.env.NEXT_PUBLIC_API_TOKEN_NEWS}`, {cache:"no-store"})
-    return newsData.json()
-}
+// Utility API functions
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.example.com'
 
-export const getNewsSearch = async (keyword:string) => {
-  const newsData = await fetch(`https://newsapi.org/v2/everything?apiKey=${process.env.API_TOKEN_NEWS}&q=${keyword}&pageSize=10`,{cache:"no-store"})
-  return newsData.json()
+export async function fetchJson<T>(url: string, options?: RequestInit): Promise<T> {
+  const response = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      ...options?.headers
+    },
+    ...options
+  })
+
+  if (!response.ok) {
+    throw new Error(`API Error: ${response.statusText}`)
+  }
+
+  return response.json()
 }
