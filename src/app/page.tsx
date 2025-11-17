@@ -20,63 +20,53 @@ export default function HomePage() {
 
         {/* Hero Content */}
         <div className="container max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-20">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Left: Text Content */}
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                  Real-Time Flood Awareness
-                </h1>
-                <p className="text-lg md:text-xl text-gray-200">
-                  Stay informed, stay safe. Get credible flood news, solutions, and emergency resources for every Filipino.
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/articles">
-                  <Button size="lg" className="w-full sm:w-auto">
-                    Read Articles <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-                <Link href="/solutions">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 text-white border-white/30 hover:bg-white/20">
-                    Explore Solutions
-                  </Button>
-                </Link>
-              </div>
+          <div className="space-y-6">
+            {/* Text Content */}
+            <div className="space-y-4 max-w-2xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                Real-Time Flood Awareness
+              </h1>
+              <p className="text-lg md:text-xl text-gray-200">
+                Stay informed, stay safe. Get credible flood news, solutions, and emergency resources for every Filipino.
+              </p>
             </div>
 
-            {/* Right: Video Embed */}
-            <div className="hidden md:block">
-              <div className="aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/20">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/dNI3i13Ce38"
-                  title="Flood Awareness Video"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full"
-                />
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/articles">
+                <Button size="lg" className="w-full sm:w-auto">
+                  Read Articles <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href="/solutions">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 text-white border-white/30 hover:bg-white/20">
+                  Explore Solutions
+                </Button>
+              </Link>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Mobile Video Section */}
-          <div className="md:hidden mt-8">
-            <div className="aspect-video rounded-xl overflow-hidden shadow-xl border border-white/20">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/dNI3i13Ce38"
-                title="Flood Awareness Video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
-            </div>
+      {/* Video Section */}
+      <section className="w-full bg-background py-12 md:py-20">
+        <div className="container max-w-4xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">Understanding the Flood Crisis</h2>
+            <p className="text-muted-foreground">
+              Watch this important video to learn more about flooding in the Philippines
+            </p>
+          </div>
+          <div className="aspect-video rounded-xl overflow-hidden shadow-2xl border border-border">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/dNI3i13Ce38"
+              title="Flood Awareness Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
           </div>
         </div>
       </section>
