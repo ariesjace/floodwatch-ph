@@ -1,21 +1,18 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import { Noto_Serif } from "next/font/google";
+import { Geist, Geist_Mono } from 'next/font/google';
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-// Font
-const notoSerif = Noto_Serif({
-  weight: ["400"], // Regular
-  subsets: ["latin"],
-  display: "swap",
-});
+// Fonts
+const geist = Geist({ subsets: ["latin"] });
+const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 // Metadata
 export const metadata: Metadata = {
-  title: "floodwatch.ph",
-  description: "Real-Time Flood News for Every Filipino.",
+  title: "FloodWatch PH - Real-Time Flood Awareness",
+  description: "Real-Time Flood News and Solutions for Every Filipino.",
   keywords: [
     "floodwatch.ph",
     "philippines floods",
@@ -23,15 +20,16 @@ export const metadata: Metadata = {
     "disaster preparedness",
     "typhoon updates",
     "flood awareness",
+    "flood solutions",
   ],
-  authors: [{ name: "ariesjace" }],
+  authors: [{ name: "FloodWatch PH Team" }],
   metadataBase: new URL("https://floodwatch-ph.vercel.app"),
   icons: {
     icon: [{ url: "/img/floodwatch.ph.png" }],
   },
   openGraph: {
-    title: "floodwatch.ph",
-    description: "Real-Time Flood News for Every Filipino.",
+    title: "FloodWatch PH - Real-Time Flood Awareness",
+    description: "Real-Time Flood News and Solutions for Every Filipino.",
     type: "website",
     url: "https://floodwatch-ph.vercel.app",
     siteName: "FloodWatch PH",
@@ -46,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "floodwatch.ph",
-    description: "Real-Time Flood News for Every Filipino.",
+    title: "FloodWatch PH",
+    description: "Real-Time Flood News and Solutions for Every Filipino.",
     images: ["/img/floodwatch.ph.png"],
   },
 };
@@ -56,13 +54,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${notoSerif.className} antialiased`}>
-        <main className="px-2 md:px-20">
-          <Header />
-          <section className="flex justify-between">
-            {children}
-            {/* LatestNews */}
-          </section>
+      <body className={`${geist.className} antialiased bg-background text-foreground`}>
+        <Header />
+        <main className="min-h-screen">
+          {children}
         </main>
         <Footer />
       </body>
